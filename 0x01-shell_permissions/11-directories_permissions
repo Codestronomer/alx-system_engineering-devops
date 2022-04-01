@@ -1,2 +1,3 @@
 #!/bin/bash
-sudo find ./ -type d -exec chmod 755 {} \
+sudo chmod -R +111 ./
+
