@@ -1,2 +1,1 @@
-# alx-system_engineering-devops
-A repo for ALX system engineering and devops
+AlX Shell I/O redirection tasks
