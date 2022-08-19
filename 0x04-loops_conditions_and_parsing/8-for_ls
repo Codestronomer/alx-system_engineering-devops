@@ -4,5 +4,5 @@
 #+ where only the apart of the name after the first dash is displayed
 for i in *
 do
-	echo "$i" | cut -f 2- -d '_'
+	echo "$i" | cut -f 2- -d '-'
 done
