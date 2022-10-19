@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # check if number of arguments is 3
 if [ "$#" -lt 3 ]
 then
