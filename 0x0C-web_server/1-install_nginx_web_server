@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # Scripts Installs nginx server
 
-apt-get -y update
-apt-get -y install nginx
+sudo apt-get -y update
+sudo apt-get -y install nginx
 # allow nginx http on firewall
 sudo ufw allow "Nginx HTTP"
 echo "Hello World!" > /var/www/html/index.html
-# restart nginx
-service nginx restart
+sudo service nginx restart
