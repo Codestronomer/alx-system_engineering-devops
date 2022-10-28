@@ -33,21 +33,21 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-# start of parameters for alexius.tech
-frontend www.alexius.tech-http-frontend
+# start of parameters for codestronomer.tech
+frontend www.codestronomer.tech-http-frontend
         bind *:80
         http-request set-header X-Forwarded-Proto http
         default_backend alexius.tech-backend
 
 
-frontend www.alexius.tech-https-frontend
-        bind *:443 ssl crt /etc/letsencrypt/live/www.alexius.tech/fullchain.pem
+frontend www.codestronomer.tech-https-frontend
+        bind *:443 ssl crt /etc/letsencrypt/live/www.codestronomer.tech/fullchain.pem
         http-request set-header X-Forwarded-Proto https
-        default_backend alexius.tech-backend
+        default_backend codestronomer.tech-backend
 
 
-backend alexius.tech-backend
+backend codestronomer.tech-backend
         balance roundrobin
-        server 45010-web-01 3.238.197.27:80 check
-        server 45010-web-02 107.21.43.52:80 check
+        server 35839-web-01 44.211.228.153:80 check
+        server 35839-web-02 107.21.43.230:80 check
 # end of parameters
