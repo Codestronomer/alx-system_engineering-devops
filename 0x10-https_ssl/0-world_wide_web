@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 # Configure my domain zone:
-# www --> 914-lb-01 54.175.26.198
-# web-01 --> 914-web-01 3.238.197.27
-# web-02 --> 914-web-02 107.21.43.52
-
 
 subdomains_all=( "www" "lb-01" "web-01" "web-02" )
 
