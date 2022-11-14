@@ -14,15 +14,20 @@ if __name__ == "__main__":
 
     # checks for current employee todos
     url2 = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(userid)
-    r2 = requests.get(url2).json()
-    list_row = []
-    for i in r2:
-        list_row.append([userid, name, i.get("completed"), i.get("title")])
-    filename = "{}.csv".format(userid)
+    tasks = requests.get(url2).json()
+    list_task = []
+    for task in tasks:
+        list_task.append([userid,
+                          name,
+                          task.get('completed'),
+                          task.get('title')])
+    filename = '{}.csv'.format(userid)
+    # for i in r2:
+    #     list_row.append([userid, name, i.get("completed"), i.get("title")])
     with open(filename, mode='w') as employee_file:
         employee_writer = csv.writer(employee_file,
                                      delimiter=',',
                                      quotechar='"',
                                      quoting=csv.QUOTE_ALL)
-        for task in list_row:
+        for task in list_task:
             employee_writer.writerow(task)
