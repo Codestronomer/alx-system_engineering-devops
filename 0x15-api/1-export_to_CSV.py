@@ -18,7 +18,8 @@ if __name__ == "__main__":
     r2 = requests.get(url2).json()
     filename = "{}.csv".format(sys.argv[1])
     with open(filename, 'w') as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, delimiter=",",
+                            quotechar='"', quoting=csv.QUOTE_ALL)
         for i in r2:
             row = [sys.argv[1], name]
             row.append(i.get("completed"))
