@@ -16,12 +16,12 @@ if __name__ == "__main__":
     url2 = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(
         sys.argv[1])
     r2 = requests.get(url2).json()
+    list_row = []
+    for i in r2:
+        list_row.append(
+            [sys.argv[1], name, i.get("completed"), i.get("title")])
     filename = "{}.csv".format(sys.argv[1])
     with open(filename, 'w') as file:
         writer = csv.writer(file, delimiter=",",
                             quotechar='"', quoting=csv.QUOTE_ALL)
-        for i in r2:
-            row = [sys.argv[1], name]
-            row.append(i.get("completed"))
-            row.append(i.get("title"))
-            writer.writerow(row)
+        writer.writerows(list_row)
