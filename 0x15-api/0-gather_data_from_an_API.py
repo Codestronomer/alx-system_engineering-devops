@@ -15,7 +15,7 @@ if __name__ == "__main__":
     url2 = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(
         sys.argv[1])
     r2 = requests.get(url2).json()
-    complete = [i for i in r2 if i.get("completed") == True]
+    complete = [i for i in r2 if i.get("completed")]
     print("Employee {} is done with tasks({}/{}):".format(
         name, len(complete), (len(r2))), end="")
     for i in complete:
