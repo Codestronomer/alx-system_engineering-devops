@@ -2,7 +2,7 @@
 """ Script that uses JSONPlaceholder API to get information about employee
 and saves to a CSV file
 """
-import csv
+import json
 import requests
 import sys
 
@@ -19,9 +19,11 @@ if __name__ == "__main__":
     r2 = requests.get(url2).json()
     list_row = []
     for i in r2:
-        list_row.append([userid, name, i.get("completed"), i.get("title")])
-    filename = "{}.csv".format(userid)
+        list_row.append({"task": i.get("title"),
+                         "completed": i.get("completed"),
+                         "username": name})
+    employee_dict = {userid: list_row}
+
+    filename = "{}.json".format(userid)
     with open(filename, 'w') as file:
-        writer = csv.writer(file, delimiter=",",
-                            quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerows(list_row)
+        json.dump(employee_dict, file)
