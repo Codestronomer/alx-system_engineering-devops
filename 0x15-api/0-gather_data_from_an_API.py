@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""
-This script uses JSONplaceholder api to get employee information
-"""
+""" This script uses JSONplaceholder api to get employee information """
 import requests
 import sys
+
 
 if __name__ == '__main__':
     # if provided with employee id
