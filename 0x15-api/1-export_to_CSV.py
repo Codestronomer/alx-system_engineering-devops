@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-""" Script that uses JSONPlaceholder API to get information about employee """
+"""
+This module returns information about an employee's TODO list
+and saves it to csv
+"""
 import csv
 import requests
-import sys
+from sys import argv
 
+if __name__ == '__main__':
+    # Get employee id from arguments
+    id = int(argv[1])
+    url = "https://jsonplaceholder.typicode.com/users/{}".format(id)
 
-if __name__ == "__main__":
-    userid = sys.argv[1]
-    # checks if employee exists and retrieves employee name
-    url1 = 'https://jsonplaceholder.typicode.com/users/{}'.format(userid)
-    r1 = requests.get(url1).json()
-    name = r1.get("username")
+    employee = requests.get(url).json()
+    employee_name = employee.get("username")
 
-    # checks for current employee todos
-    url2 = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(userid)
-    tasks = requests.get(url2).json()
+    tasks = requests.get("https://jsonplaceholder.typicode.com/todos/").json()
 
     # save to csv
     attrs = ["userId", "username", "completed", "title"]
@@ -23,6 +24,6 @@ if __name__ == "__main__":
             f, fieldnames=attrs, quoting=csv.QUOTE_ALL)
         for task in tasks:
             if task.get("userId") == id:
-                task["username"] = name
+                task["username"] = employee_name
                 del task['id']
                 employee_writer.writerow(task)
