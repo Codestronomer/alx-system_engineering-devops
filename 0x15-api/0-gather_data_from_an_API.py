@@ -4,22 +4,22 @@ import requests
 import sys
 
 
-if __name__ == '__main__':
-    # if provided with employee id
-    if len(sys.argv) > 1:
-        # checks if employee exists and retrieves employee name
-        url1 = 'https://jsonplaceholder.typicode.com/users/{}'.format(
-            sys.argv[1])
-        r1 = requests.get(url1).json()
-        name = r1.get("name")
+if __name__ == "__main__":
+    url = 'https://jsonplaceholder.typicode.com/'
 
-        # checks for current employee todos
-        url2 = 'https://jsonplaceholder.typicode.com/users/{}/todos'.format(
-            sys.argv[1])
-        r2 = requests.get(url2).json()
-        complete = [i for i in r2 if i.get("completed") == True]
-        print(
-            "Employee {} is done with tasks({}/{}):".format(
-                name, len(complete), (len(r2)), end="")
-        for i in complete:
-            print("\t {}".format(i.get("title")))
+    user = '{}users/{}'.format(url, sys.argv[1])
+    res = requests.get(user)
+    json_o = res.json()
+    print("Employee {} is done with tasks".format(json_o.get('name')), end="")
+
+    todos = '{}todos?userId={}'.format(url, sys.argv[1])
+    res = requests.get(todos)
+    tasks = res.json()
+    l_task = []
+    for task in tasks:
+        if task.get('completed') is True:
+            l_task.append(task)
+
+    print("({}/{}):".format(len(l_task), len(tasks)))
+    for task in l_task:
+        print("\t {}".format(task.get("title")))
