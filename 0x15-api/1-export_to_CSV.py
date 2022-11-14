@@ -19,7 +19,10 @@ if __name__ == "__main__":
     for i in r2:
         list_row.append([userid, name, i.get("completed"), i.get("title")])
     filename = "{}.csv".format(userid)
-    with open(filename, 'w') as file:
-        writer = csv.writer(file, delimiter=",",
-                            quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerows(list_row)
+    with open(filename, mode='w') as employee_file:
+        employee_writer = csv.writer(employee_file,
+                                     delimiter=',',
+                                     quotechar='"',
+                                     quoting=csv.QUOTE_ALL)
+        for task in list_row:
+            employee_writer.writerow(task)
