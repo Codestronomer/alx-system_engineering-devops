@@ -20,6 +20,6 @@ if __name__ == '__main__':
         r2 = requests.get(url2).json()
         complete = [i for i in r2 if i["completed"] == True]
         print(
-            f"Employee {name} is done with tasks({len(complete)}/{len(r2)}):")
+            "Employee {} is done with tasks({}/{}):".format(name, len(complete), (len(r2)))
         for i in complete:
             print("\t {}".format(i["title"]))
